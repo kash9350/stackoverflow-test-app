@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars'
 import {getFeaturedQuestion} from '../actions/actionMethods';
+import Question from './question';
 import '../css/bootstrap.css';
 
 class FeaturedQuestion extends React.Component{
@@ -57,20 +58,19 @@ class FeaturedQuestion extends React.Component{
 
     render(){
         return(
-            <div style={{textAlign: 'left',paddingTop:'4rem'}}>
-            {window.innerHeight}
-                <Scrollbars style={{ height: (window.innerHeight-100) + 'px' }} onScrollStop={this.handleUpdate}>
-                    
+            <div className="container" style={{textAlign: 'left',paddingTop:'4rem'}}>
+                <h3>Top Questions [Featured]</h3>
+                <Scrollbars style={{ height: (window.innerHeight-110) + 'px' }} onScrollStop={this.handleUpdate}>
                     { !this.state.isLoading?
                         this.state.featureQuestions.length > 0 ?
                             this.state.featureQuestions.map((questions)=>{
                                 return(
-                                    <code>{JSON.stringify(questions)}</code>
+                                    <Question data={questions}></Question>
                                 )
                             })
                         :
                         <h3>'No Question found'</h3>
-                    : <h3>Loading ...</h3>
+                    : <h4>Loading ...</h4>
                     }
                 </Scrollbars>
             </div>

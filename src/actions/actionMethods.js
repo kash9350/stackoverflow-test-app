@@ -17,3 +17,11 @@ export function getUserProfile(id){
     }
     return axios(config).then(response=>response)
 }
+
+export function getUserTags(id){
+    let config = {
+        url: stackExchangeHost+`/users/${id}/tags?order=desc&sort=popular&site=stackoverflow`,
+        method:'get'
+    }
+    return axios(config).then(response=>response)
+}
