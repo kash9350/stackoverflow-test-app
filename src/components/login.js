@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
     }
 
     setEmail =(event) =>{
-        let regex=new RegExp(event.target.pattern, 'g')
+        let regex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         let value=event.target.value
         this.setState({
             emailAddress:value
@@ -67,13 +67,12 @@ class LoginPage extends React.Component {
     }
 
     render(){
-        let emailPattern=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         return(
             <div style={{display:'flex',paddingTop:'10%'}}>
                 <form className="form-signin">
                     <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <label for="inputEmail" className="sr-only">Email address</label>
-                    <input type="email" pattern={emailPattern} id="inputEmail" className="form-control" placeholder="Email address" required autofocus="" value={this.state.emailAddress} onChange={this.setEmail}/>
+                    <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus="" value={this.state.emailAddress} onChange={this.setEmail}/>
                     <label for="inputPassword" className="sr-only">Password</label>
                     <input type="password" minLength={6} id="inputPassword" className="form-control" placeholder="Password" required value={this.state.password} onChange={this.setPassword}/>
                     <div className="checkbox mb-3">
